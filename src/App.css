@@ -1,0 +1,90 @@
+
+#root {
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+  color: #2dc1f0;
+}
+
+body {
+  background-color: #420624;
+}
+
+/* ////////////MI API ////////////*/
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display:grid;
+  -webkit-mask: conic-gradient(from 15deg,#0000,#000);
+  animation: l26 1s infinite steps(12);
+}
+.loader,
+.loader:before,
+.loader:after{
+  background:
+    radial-gradient(closest-side at 50% 12.5%,
+     #f03355 96%,#0000) 50% 0/20% 80% repeat-y,
+    radial-gradient(closest-side at 12.5% 50%,
+     #f03355 96%,#0000) 0 50%/80% 20% repeat-x;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  grid-area: 1/1;
+  transform: rotate(30deg);
+}
+.loader:after {
+  transform: rotate(60deg);
+}
+
+@keyframes l26 {
+  100% {transform:rotate(1turn)}
+}
+
+/* BODY */ 
+
+.all-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  gap: 30px;
+}
+
+/*Cards*/
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 50px;
+}
+
+/* Card */
+
+.card {
+  background-color: #1d000d;
+  color: #2dc1f0;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* ///////FOOTER///////*/
+
+footer {
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #1d000d;
+  font-size: 45px;
+}
+
+
+
+
+

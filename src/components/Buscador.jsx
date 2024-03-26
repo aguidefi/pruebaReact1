@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { URL_Base, getCocktails} from "./constantes"
 
-export const Buscador = () => {
+
+export function Buscador() {
   
   const [preparacion, setPreparacion] = useState ('')
 
@@ -8,12 +10,25 @@ export const Buscador = () => {
     setPreparacion(e.target.value)
   }
 
-  
+  const cocktailByName = (valor) => {
+    if(valor === '' || valor === ' '){
+      return getCocktails(preparacion)
+    }
+    fetch(`${URL_Base}=${valor}`)
+      .then((res) => res.json())
+      .then(data => setPreparacion(data.drinks))
+      .catch((err) => console.log(err))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    cocktailByName(preparacion)
+  }
 
   return (
-    <div className="buscador">
-      <input type="text" placeholder="Enter cocktail name" value={preparacion} onChange={handlePreparacionChange} />
-      <button onClick={handleSearch}>Search</button>
-    </div>
+    <form className="buscador" onSubmit={handleSubmit}>
+      <input type="text" placeholder="Search for a cocktail..." value={preparacion} onChange={handlePreparacionChange} />
+      <button type="submit">🔎</button>
+    </form>
   )
 }
