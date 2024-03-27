@@ -1,7 +1,7 @@
 import { useEffect, useState} from "react";
 import { MyCard } from "./MyCard";
-import { getCocktails } from "./constantes";
 import { Button } from "react-bootstrap";
+import { URL_Base } from "./constantes";
 
 
 export const MiApi = () => {
@@ -9,7 +9,10 @@ export const MiApi = () => {
   const [preparaciones, setPreparaciones] = useState([])
 
   useEffect(() => {
-    getCocktails(setPreparaciones)
+      fetch(URL_Base)
+        .then((res) => res.json())
+        .then((data) => setPreparaciones(data.drinks))
+        .catch((err) => console.log(err))
   }, [])
 
   const ascendingEvent = () => {
@@ -38,8 +41,8 @@ export const MiApi = () => {
         <hr/>
       </section>
       <div className="order">
-      <Button variant="info" onClick={ascendingEvent}>Order A -> Z</Button>
-      <Button variant="info" onClick={descendingEvent}>Order Z -> A</Button>
+      <Button variant="outline-info" onClick={ascendingEvent}>Order A -> Z</Button>
+      <Button variant="outline-info" onClick={descendingEvent}>Order Z -> A</Button>
       </div>
       <section className="container">
         {preparaciones.length > 0 ?
